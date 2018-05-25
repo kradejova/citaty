@@ -21,12 +21,29 @@ public class CitacniSluzba {
         return nahodnyCitat;
     }
 
+    /*public Citat getNahodnyCitatOdAutora() {
+        Citat nahodnyCitat = getNahodnyCitat();
+
+        List<Citat> vyberCitatu = new ArrayList<>();   //prazdny seznam
+
+        List<Citat> seznamCitatu = zdroj.getCitaty();
+
+        for (Citat citat: seznamCitatu){
+            if (citat.getAutor() == nahodnyCitat.getAutor()){
+                citat.add();
+            }
+        }    */
+
+
+
+    }
+
     public int getPocetCitatu() {    //pocita pocet citatu celkem
         int pocetCitatu = zdroj.getCitaty().size();
         return pocetCitatu;
     }
 
-    public int getPocetAutoru() {
+    /*public int getPocetAutoru() {
         int pocetAutoru =
-    }
+    } */
 }

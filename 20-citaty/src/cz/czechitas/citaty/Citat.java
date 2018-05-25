@@ -4,7 +4,7 @@ public class Citat {
 
     private String autor;    //globalni promene*
     private String text;
-    private Boolean oblibene;
+    //private Boolean oblibene;
 
     public Citat(String autor, String text) { //konstruktor, kazdy objekt citat ma od zacatku atribut autor a atribut jmeno
         this.autor = autor;   //this - v kazdem konkretnim citatu bude konkretni this.autor, *lokalni promene za rovnitkem, this.autor - globalni promene
@@ -19,10 +19,10 @@ public class Citat {
         return text;
     }
 
-    public void isOblibene(Boolean oblibene) {
+    /*public void isOblibene(Boolean oblibene) {
         if (oblibene == true){
             return ;
         }
 
-    }
+    }    */
 }
