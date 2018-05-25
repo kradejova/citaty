@@ -26,7 +26,5 @@ public class CitacniSluzba {
         return pocetCitatu;
     }
 
-    public int getPocetAutoru() {
-        int pocetAutoru =
-    }
+
 }
