@@ -20,6 +20,9 @@ public class Citat {
     }
 
     public void isOblibene(Boolean oblibene) {
-        return oblibene;
+        if (oblibene == true){
+            return ;
+        }
+
     }
 }
