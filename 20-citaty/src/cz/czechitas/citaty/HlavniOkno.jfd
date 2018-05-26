@@ -33,6 +33,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JCheckBox" ) {
 				name: "chckOblibeny"
 				"text": "Oblíbený"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "kliknutiNaChckOblibeny", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 4 0"
 			} )

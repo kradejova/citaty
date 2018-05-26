@@ -41,9 +41,9 @@ public class HlavniOkno extends JFrame {
     public HlavniOkno() {   //konstruktor pro tridu Hlavni okno, nastavujeme zde pocet citatu a pocet autoru
         initComponents();
 
-       nastavCitacniSluzbu(new StatickyZdrojCitatu());
+        nastavCitacniSluzbu(new StatickyZdrojCitatu());
 
-       // int pocetCitatu = zdrojCitatu.getCitaty().size();
+        // int pocetCitatu = zdrojCitatu.getCitaty().size();
         int pocetCitatu = citacniSluzba.getPocetCitatu();
         labPocetCitatuCelkem.setText(String.valueOf(pocetCitatu));
 
@@ -55,7 +55,10 @@ public class HlavniOkno extends JFrame {
         aktualniCitat = citacniSluzba.getNahodnyCitat();   //nahodne vybrany citat
         labAutor.setText(aktualniCitat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
         txtCitat.setText(aktualniCitat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
+
         btnAutoruvCitat.setEnabled(true);
+
+        chckOblibeny.setSelected(aktualniCitat.isOblibene());
     }
 
     private void menuOtevritSoubor(ActionEvent e) {
@@ -70,8 +73,6 @@ public class HlavniOkno extends JFrame {
             btnAutoruvCitat.setEnabled(false);
         }
 
-
-
     }
 
     private void nastavCitacniSluzbu(ZdrojCitatu zdroj) {
@@ -84,7 +85,13 @@ public class HlavniOkno extends JFrame {
         Citat citat = citacniSluzba.getNahodnyCitatOdAutora(aktualniCitat);
         labAutor.setText(citat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
         txtCitat.setText(citat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
-        aktualniCitat = citat; 
+        aktualniCitat = citat;
+
+        chckOblibeny.setSelected(aktualniCitat.isOblibene());
+    }
+    
+    private void kliknutiNaChckOblibeny(ActionEvent e) {
+        aktualniCitat.setOblibene(!aktualniCitat.isOblibene()); //nastavim opacnou hodnotu pri kliknuti na checkbox než tam před kliknutím byla
     }
 
     private void initComponents() {
@@ -178,6 +185,7 @@ public class HlavniOkno extends JFrame {
 
         //---- chckOblibeny ----
         chckOblibeny.setText("Obl\u00edben\u00fd");
+        chckOblibeny.addActionListener(e -> kliknutiNaChckOblibeny(e));
         contentPane.add(chckOblibeny, "cell 4 0");
 
         //---- labAutorTitle ----
