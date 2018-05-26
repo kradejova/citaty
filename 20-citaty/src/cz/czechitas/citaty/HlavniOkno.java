@@ -55,6 +55,7 @@ public class HlavniOkno extends JFrame {
         aktualniCitat = citacniSluzba.getNahodnyCitat();   //nahodne vybrany citat
         labAutor.setText(aktualniCitat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
         txtCitat.setText(aktualniCitat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
+        btnAutoruvCitat.setEnabled(true);
     }
 
     private void menuOtevritSoubor(ActionEvent e) {
@@ -66,6 +67,7 @@ public class HlavniOkno extends JFrame {
             labAutor.setText("");
             txtCitat.setText("");
             aktualniCitat = null;
+            btnAutoruvCitat.setEnabled(false);
         }
 
 
@@ -170,6 +172,7 @@ public class HlavniOkno extends JFrame {
 
         //---- btnAutoruvCitat ----
         btnAutoruvCitat.setText("N\u00e1hodn\u00fd od autora");
+        btnAutoruvCitat.setEnabled(false);
         btnAutoruvCitat.addActionListener(e -> poStisknutiBtnAutoruvCitat(e));
         contentPane.add(btnAutoruvCitat, "cell 2 0 2 1");
 
