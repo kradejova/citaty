@@ -27,7 +27,7 @@ public class CitacniSluzba {
         List<Citat> seznamVsechCitatu = zdroj.getCitaty();
 
         for (Citat c: seznamVsechCitatu){    //Citat c je ten, ktery prochazim v tom for cyklu, mohl by se misto c jmenovat treba xyz
-            if (c.getAutor() == citat.getAutor()){
+            if (c.getAutor().equals(citat.getAutor())){
                 vyberCitatu.add(c);   //citat.add() - tohle bylo špatně, protože na tride citat neni definovana metoda add, ta je definovana na seznamu
             }
         }

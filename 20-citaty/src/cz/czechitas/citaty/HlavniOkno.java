@@ -63,7 +63,12 @@ public class HlavniOkno extends JFrame {
         if (vysledek == JFileChooser.APPROVE_OPTION) {   //APPROVE_OPTION je enum
             File soubor = vyberovyDialog.getSelectedFile();
             nastavCitacniSluzbu(new SouborovyZdrojCitatu(soubor));
+            labAutor.setText("");
+            txtCitat.setText("");
+            aktualniCitat = null;
         }
+
+
 
     }
 
@@ -71,6 +76,13 @@ public class HlavniOkno extends JFrame {
         zdrojCitatu = zdroj;
         citacniSluzba = new CitacniSluzba(zdroj);
         labPocetCitatuCelkem.setText(String.valueOf(citacniSluzba.getPocetCitatu()));
+    }
+
+    private void poStisknutiBtnAutoruvCitat(ActionEvent e) {
+        Citat citat = citacniSluzba.getNahodnyCitatOdAutora(aktualniCitat);
+        labAutor.setText(citat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
+        txtCitat.setText(citat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
+        aktualniCitat = citat; 
     }
 
     private void initComponents() {
@@ -158,6 +170,7 @@ public class HlavniOkno extends JFrame {
 
         //---- btnAutoruvCitat ----
         btnAutoruvCitat.setText("N\u00e1hodn\u00fd od autora");
+        btnAutoruvCitat.addActionListener(e -> poStisknutiBtnAutoruvCitat(e));
         contentPane.add(btnAutoruvCitat, "cell 2 0 2 1");
 
         //---- chckOblibeny ----
