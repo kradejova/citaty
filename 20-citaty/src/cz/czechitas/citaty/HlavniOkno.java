@@ -72,6 +72,7 @@ public class HlavniOkno extends JFrame {
             btnAutoruvCitat.setEnabled(false);
             labPocetAutoru.setText(String.valueOf(citacniSluzba.getPocetAutoru()));
             chckOblibeny.setSelected(false);
+            chckOblibeny.setEnabled(false);
         }
 
     }
@@ -106,6 +107,7 @@ public class HlavniOkno extends JFrame {
         txtCitat.setText(aktualniCitat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
         btnAutoruvCitat.setEnabled(true);
         chckOblibeny.setSelected(aktualniCitat.isOblibene());
+        chckOblibeny.setEnabled(true);
     }
 
     private void initComponents() {
@@ -136,21 +138,21 @@ public class HlavniOkno extends JFrame {
         setTitle("Prohl\u00ed\u017ee\u010d cit\u00e1t\u016f");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-                "insets rel,hidemode 3",
-                // columns
-                "[fill]" +
-                        "[left]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[grow,fill]",
-                // rows
-                "[fill]" +
-                        "[]" +
-                        "[]" +
-                        "[grow]" +
-                        "[]" +
-                        "[]"));
+            "insets rel,hidemode 3",
+            // columns
+            "[fill]" +
+            "[left]" +
+            "[fill]" +
+            "[fill]" +
+            "[fill]" +
+            "[grow,fill]",
+            // rows
+            "[fill]" +
+            "[]" +
+            "[]" +
+            "[grow]" +
+            "[]" +
+            "[]"));
         this.contentPane = (JPanel) this.getContentPane();
         this.contentPane.setBackground(this.getBackground());
         LayoutManager layout = this.contentPane.getLayout();
@@ -207,6 +209,7 @@ public class HlavniOkno extends JFrame {
 
         //---- chckOblibeny ----
         chckOblibeny.setText("Obl\u00edben\u00fd");
+        chckOblibeny.setEnabled(false);
         chckOblibeny.addActionListener(e -> kliknutiNaChckOblibeny(e));
         contentPane.add(chckOblibeny, "cell 5 0");
 
