@@ -26,8 +26,8 @@ public class CitacniSluzba {
 
         List<Citat> seznamVsechCitatu = zdroj.getCitaty();
 
-        for (Citat c: seznamVsechCitatu){    //Citat c je ten, ktery prochazim v tom for cyklu, mohl by se misto c jmenovat treba xyz
-            if (c.getAutor().equals(citat.getAutor())){
+        for (Citat c : seznamVsechCitatu) {    //Citat c je ten, ktery prochazim v tom for cyklu, mohl by se misto c jmenovat treba xyz
+            if (c.getAutor().equals(citat.getAutor())) {
                 vyberCitatu.add(c);   //citat.add() - tohle bylo špatně, protože na tride citat neni definovana metoda add, ta je definovana na seznamu
             }
         }
@@ -37,7 +37,7 @@ public class CitacniSluzba {
 
         Citat nahodnyCitat = vyberCitatu.get(cisloCitatu);
         return nahodnyCitat;
-        
+
     }
 
     public Citat getNahodnyOblibenyCitat() {
@@ -45,9 +45,9 @@ public class CitacniSluzba {
 
         List<Citat> seznamVsechOblibenychCitatu = zdroj.getCitaty();
         for (Citat c : seznamVsechOblibenychCitatu) {
-        if (c.isOblibene()) {
-        vyberOblibenehoCitatu.add(c);
-        }
+            if (c.isOblibene()) {
+                vyberOblibenehoCitatu.add(c);
+            }
         }
 
         Random random = new Random();
@@ -59,7 +59,7 @@ public class CitacniSluzba {
     }
 
     public Boolean existujeOblibenyCitat() {
-        for (Citat c : zdroj.getCitaty()){
+        for (Citat c : zdroj.getCitaty()) {
             if (c.isOblibene()) {
                 return true;
             }
@@ -72,5 +72,13 @@ public class CitacniSluzba {
         return pocetCitatu;
     }
 
+    public int getPocetAutoru() {     //pocita pocet autoru
+        Set<String> jmena = new HashSet<>();
+        for (Citat c : zdroj.getCitaty()) {
+            jmena.add(c.getAutor());
+
+        }
+        return jmena.size();
+    }
 
 }
