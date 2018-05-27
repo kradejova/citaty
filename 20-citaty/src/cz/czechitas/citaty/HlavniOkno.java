@@ -44,7 +44,6 @@ public class HlavniOkno extends JFrame {
 
         nastavCitacniSluzbu(new StatickyZdrojCitatu());
 
-        // int pocetCitatu = zdrojCitatu.getCitaty().size();
         int pocetCitatu = citacniSluzba.getPocetCitatu();
         labPocetCitatuCelkem.setText(String.valueOf(pocetCitatu));
 
@@ -53,12 +52,7 @@ public class HlavniOkno extends JFrame {
 
     private void stisknutoBtnNahodnyCitat(ActionEvent e) {    //kliknuti na tlac. Nahodny citat
         aktualniCitat = citacniSluzba.getNahodnyCitat();   //nahodne vybrany citat
-        labAutor.setText(aktualniCitat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
-        txtCitat.setText(aktualniCitat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
-
-        btnAutoruvCitat.setEnabled(true);
-
-        chckOblibeny.setSelected(aktualniCitat.isOblibene());
+        aktualizujHodnotyVeFormulari();
     }
 
     private void menuOtevritSoubor(ActionEvent e) {
@@ -77,6 +71,7 @@ public class HlavniOkno extends JFrame {
             aktualniCitat = null;
             btnAutoruvCitat.setEnabled(false);
             labPocetAutoru.setText(String.valueOf(citacniSluzba.getPocetAutoru()));
+            chckOblibeny.setSelected(false);
         }
 
     }
@@ -88,12 +83,8 @@ public class HlavniOkno extends JFrame {
     }
 
     private void poStisknutiBtnAutoruvCitat(ActionEvent e) {
-        Citat citat = citacniSluzba.getNahodnyCitatOdAutora(aktualniCitat);
-        labAutor.setText(citat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
-        txtCitat.setText(citat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
-        aktualniCitat = citat;
-
-        chckOblibeny.setSelected(aktualniCitat.isOblibene());
+        aktualniCitat = citacniSluzba.getNahodnyCitatOdAutora(aktualniCitat);
+        aktualizujHodnotyVeFormulari();
     }
 
     private void kliknutiNaChckOblibeny(ActionEvent e) {
@@ -106,12 +97,15 @@ public class HlavniOkno extends JFrame {
     }
 
     private void poStisknutiBtnNahodnyOblibenyCitat(ActionEvent e) {
-        Citat citat = citacniSluzba.getNahodnyOblibenyCitat();
-        labAutor.setText((citat.getAutor()));
-        txtCitat.setText((citat.getText()));
-        aktualniCitat = citat;
-        chckOblibeny.setSelected(aktualniCitat.isOblibene());
+        aktualniCitat = citacniSluzba.getNahodnyOblibenyCitat();
+        aktualizujHodnotyVeFormulari();
+    }
+
+    private void aktualizujHodnotyVeFormulari() {
+        labAutor.setText(aktualniCitat.getAutor()); //zobrazeni v labAutor autora nahodne vybraneho citatu
+        txtCitat.setText(aktualniCitat.getText());  //zobrazeni v labText textu nahodne vybraneho citatu
         btnAutoruvCitat.setEnabled(true);
+        chckOblibeny.setSelected(aktualniCitat.isOblibene());
     }
 
     private void initComponents() {
@@ -142,21 +136,21 @@ public class HlavniOkno extends JFrame {
         setTitle("Prohl\u00ed\u017ee\u010d cit\u00e1t\u016f");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "insets rel,hidemode 3",
-            // columns
-            "[fill]" +
-            "[left]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[grow,fill]",
-            // rows
-            "[fill]" +
-            "[]" +
-            "[]" +
-            "[grow]" +
-            "[]" +
-            "[]"));
+                "insets rel,hidemode 3",
+                // columns
+                "[fill]" +
+                        "[left]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[grow,fill]",
+                // rows
+                "[fill]" +
+                        "[]" +
+                        "[]" +
+                        "[grow]" +
+                        "[]" +
+                        "[]"));
         this.contentPane = (JPanel) this.getContentPane();
         this.contentPane.setBackground(this.getBackground());
         LayoutManager layout = this.contentPane.getLayout();
