@@ -48,8 +48,7 @@ public class HlavniOkno extends JFrame {
         int pocetCitatu = citacniSluzba.getPocetCitatu();
         labPocetCitatuCelkem.setText(String.valueOf(pocetCitatu));
 
-        /* int pocetAutoru = zdrojCitatu.getCitaty().size();
-        labPocetAutoru.setText(String.valueOf(pocetAutoru));    jeste jsme neresili, je potreba poresit vic citatu od jednoho autora */
+        labPocetAutoru.setText(String.valueOf(citacniSluzba.getPocetAutoru()));
     }
 
     private void stisknutoBtnNahodnyCitat(ActionEvent e) {    //kliknuti na tlac. Nahodny citat
@@ -72,6 +71,7 @@ public class HlavniOkno extends JFrame {
             txtCitat.setText("");
             aktualniCitat = null;
             btnAutoruvCitat.setEnabled(false);
+            labPocetAutoru.setText(String.valueOf(citacniSluzba.getPocetAutoru()));
         }
 
     }
@@ -136,21 +136,21 @@ public class HlavniOkno extends JFrame {
         setTitle("Prohl\u00ed\u017ee\u010d cit\u00e1t\u016f");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "insets rel,hidemode 3",
-            // columns
-            "[fill]" +
-            "[left]" +
-            "[fill]" +
-            "[fill]" +
-            "[fill]" +
-            "[grow,fill]",
-            // rows
-            "[fill]" +
-            "[]" +
-            "[]" +
-            "[grow]" +
-            "[]" +
-            "[]"));
+                "insets rel,hidemode 3",
+                // columns
+                "[fill]" +
+                        "[left]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[fill]" +
+                        "[grow,fill]",
+                // rows
+                "[fill]" +
+                        "[]" +
+                        "[]" +
+                        "[grow]" +
+                        "[]" +
+                        "[]"));
         this.contentPane = (JPanel) this.getContentPane();
         this.contentPane.setBackground(this.getBackground());
         LayoutManager layout = this.contentPane.getLayout();
