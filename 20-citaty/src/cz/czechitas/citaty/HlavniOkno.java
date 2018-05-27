@@ -21,6 +21,7 @@ public class HlavniOkno extends JFrame {
     JCheckBoxMenuItem menuPouzeOblibene;
     JButton btnNahodnyCitat;
     JButton btnAutoruvCitat;
+    JButton btnNahodnyOblibenyCitat;
     JCheckBox chckOblibeny;
     JLabel labAutorTitle;
     JLabel labAutor;
@@ -89,9 +90,22 @@ public class HlavniOkno extends JFrame {
 
         chckOblibeny.setSelected(aktualniCitat.isOblibene());
     }
-    
+
     private void kliknutiNaChckOblibeny(ActionEvent e) {
         aktualniCitat.setOblibene(!aktualniCitat.isOblibene()); //nastavim opacnou hodnotu pri kliknuti na checkbox než tam před kliknutím byla
+        if (citacniSluzba.existujeOblibenyCitat()) {
+            btnNahodnyOblibenyCitat.setEnabled(true);
+        } else {
+            btnNahodnyOblibenyCitat.setEnabled(false);
+        }
+    }
+
+    private void poStisknutiBtnNahodnyOblibenyCitat(ActionEvent e) {
+        Citat citat = citacniSluzba.getNahodnyOblibenyCitat();
+        labAutor.setText((citat.getAutor()));
+        txtCitat.setText((citat.getText()));
+        aktualniCitat = citat;
+        chckOblibeny.setSelected(aktualniCitat.isOblibene());
     }
 
     private void initComponents() {
@@ -105,6 +119,7 @@ public class HlavniOkno extends JFrame {
         menuPouzeOblibene = new JCheckBoxMenuItem();
         btnNahodnyCitat = new JButton();
         btnAutoruvCitat = new JButton();
+        btnNahodnyOblibenyCitat = new JButton();
         chckOblibeny = new JCheckBox();
         labAutorTitle = new JLabel();
         labAutor = new JLabel();
@@ -125,6 +140,7 @@ public class HlavniOkno extends JFrame {
             // columns
             "[fill]" +
             "[left]" +
+            "[fill]" +
             "[fill]" +
             "[fill]" +
             "[grow,fill]",
@@ -183,15 +199,21 @@ public class HlavniOkno extends JFrame {
         btnAutoruvCitat.addActionListener(e -> poStisknutiBtnAutoruvCitat(e));
         contentPane.add(btnAutoruvCitat, "cell 2 0 2 1");
 
+        //---- btnNahodnyOblibenyCitat ----
+        btnNahodnyOblibenyCitat.setText("N\u00e1hodn\u00fd obl\u00edben\u00fd cit\u00e1t");
+        btnNahodnyOblibenyCitat.setEnabled(false);
+        btnNahodnyOblibenyCitat.addActionListener(e -> poStisknutiBtnNahodnyOblibenyCitat(e));
+        contentPane.add(btnNahodnyOblibenyCitat, "cell 4 0");
+
         //---- chckOblibeny ----
         chckOblibeny.setText("Obl\u00edben\u00fd");
         chckOblibeny.addActionListener(e -> kliknutiNaChckOblibeny(e));
-        contentPane.add(chckOblibeny, "cell 4 0");
+        contentPane.add(chckOblibeny, "cell 5 0");
 
         //---- labAutorTitle ----
         labAutorTitle.setText("Autor");
         contentPane.add(labAutorTitle, "cell 0 1,alignx center,growx 0");
-        contentPane.add(labAutor, "cell 2 1 3 1,alignx left,growx 0");
+        contentPane.add(labAutor, "cell 2 1 4 1,alignx left,growx 0");
 
         //---- labCitatTitle ----
         labCitatTitle.setText("Citat");
@@ -207,7 +229,7 @@ public class HlavniOkno extends JFrame {
             txtCitat.setEditable(false);
             scrollPane1.setViewportView(txtCitat);
         }
-        contentPane.add(scrollPane1, "cell 1 2 4 2,grow");
+        contentPane.add(scrollPane1, "cell 1 2 5 2,grow");
 
         //---- labPocetCitatuCelkemTitle ----
         labPocetCitatuCelkemTitle.setText("Cit\u00e1t\u016f celkem:");

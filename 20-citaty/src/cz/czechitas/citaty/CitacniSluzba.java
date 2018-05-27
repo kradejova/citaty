@@ -40,6 +40,33 @@ public class CitacniSluzba {
         
     }
 
+    public Citat getNahodnyOblibenyCitat() {
+        List<Citat> vyberOblibenehoCitatu = new ArrayList<>();
+
+        List<Citat> seznamVsechOblibenychCitatu = zdroj.getCitaty();
+        for (Citat c : seznamVsechOblibenychCitatu) {
+        if (c.isOblibene()) {
+        vyberOblibenehoCitatu.add(c);
+        }
+        }
+
+        Random random = new Random();
+        int cisloCitatu = random.nextInt(vyberOblibenehoCitatu.size());   //zdrojCitatu.getCitaty().size() = velikost seznamu zdrojCitatu, random.nextInt - vraci nahodne cislo od 0 po hranici-1 v zavorce, tady si nahodne vyberu index citatu a na dalsim radku uz pracuji s timto vybranym indexem
+
+        Citat nahodnyCitat = vyberOblibenehoCitatu.get(cisloCitatu);
+        return nahodnyCitat;
+
+    }
+
+    public Boolean existujeOblibenyCitat() {
+        for (Citat c : zdroj.getCitaty()){
+            if (c.isOblibene()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getPocetCitatu() {    //pocita pocet citatu celkem
         int pocetCitatu = zdroj.getCitaty().size();
         return pocetCitatu;
