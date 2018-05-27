@@ -27,8 +27,13 @@ public class SouborovyZdrojCitatu implements ZdrojCitatu {
         for (int i = 0; i < radky.size(); i = i + 3) {
             String autor = radky.get(i);        //na i + 3 radku je jmeno autora
             String textCitatu = radky.get(i + 2);   //na i+2 radku je text citatu
+            
+            Boolean jeOblibeny = false;
+            if (radky.get(i + 1).equals("1")) {
+                jeOblibeny = true;
+            }
+            Citat nactenyCitat = new Citat(autor, textCitatu, jeOblibeny); //mam vytvoreny citat, ale nenacitam ho k tem ostatnim do seznamu
 
-            Citat nactenyCitat = new Citat(autor, textCitatu); //mam vytvoreny citat, ale nenacitam ho k tem ostatnim do seznamu
             citaty.add(nactenyCitat);       //vlozim nacteny citat do seznamu na radku 20 (ctr+klik na citaty -> zjistim ten dany seznam)
 
         }

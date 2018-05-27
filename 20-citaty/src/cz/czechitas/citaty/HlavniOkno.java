@@ -67,6 +67,11 @@ public class HlavniOkno extends JFrame {
         if (vysledek == JFileChooser.APPROVE_OPTION) {   //APPROVE_OPTION je enum
             File soubor = vyberovyDialog.getSelectedFile();
             nastavCitacniSluzbu(new SouborovyZdrojCitatu(soubor));
+            if (citacniSluzba.existujeOblibenyCitat()) {
+                btnNahodnyOblibenyCitat.setEnabled(true);
+            } else {
+                btnNahodnyOblibenyCitat.setEnabled(false);
+            }
             labAutor.setText("");
             txtCitat.setText("");
             aktualniCitat = null;
@@ -106,6 +111,7 @@ public class HlavniOkno extends JFrame {
         txtCitat.setText((citat.getText()));
         aktualniCitat = citat;
         chckOblibeny.setSelected(aktualniCitat.isOblibene());
+        btnAutoruvCitat.setEnabled(true);
     }
 
     private void initComponents() {
@@ -136,21 +142,21 @@ public class HlavniOkno extends JFrame {
         setTitle("Prohl\u00ed\u017ee\u010d cit\u00e1t\u016f");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-                "insets rel,hidemode 3",
-                // columns
-                "[fill]" +
-                        "[left]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[grow,fill]",
-                // rows
-                "[fill]" +
-                        "[]" +
-                        "[]" +
-                        "[grow]" +
-                        "[]" +
-                        "[]"));
+            "insets rel,hidemode 3",
+            // columns
+            "[fill]" +
+            "[left]" +
+            "[fill]" +
+            "[fill]" +
+            "[fill]" +
+            "[grow,fill]",
+            // rows
+            "[fill]" +
+            "[]" +
+            "[]" +
+            "[grow]" +
+            "[]" +
+            "[]"));
         this.contentPane = (JPanel) this.getContentPane();
         this.contentPane.setBackground(this.getBackground());
         LayoutManager layout = this.contentPane.getLayout();

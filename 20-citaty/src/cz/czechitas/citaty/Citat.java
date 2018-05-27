@@ -8,9 +8,15 @@ public class Citat {
     private String text;
     private Boolean oblibene;
 
-
-    public Citat(String autor, String text) { //konstruktor, kazdy objekt citat ma od zacatku atribut autor a atribut jmeno
+    //atribut Boolean oblibene se tyka citatu, ktere uz oblibenost maji urcenou pri vytvoreni
+    public Citat(String autor, String text, Boolean oblibene) { //konstruktor, kazdy objekt citat ma od zacatku atribut autor a atribut jmeno
         this.autor = autor;   //this - v kazdem konkretnim citatu bude konkretni this.autor, *lokalni promene za rovnitkem, this.autor - globalni promene
+        this.text = text;
+        this.oblibene = oblibene;
+    }
+
+    public Citat(String autor, String text) {
+        this.autor = autor;
         this.text = text;
         this.oblibene = false;
     }
